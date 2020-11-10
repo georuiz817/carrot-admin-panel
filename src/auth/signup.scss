@@ -1,0 +1,28 @@
+.auth-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20%;
+}
+
+.auth-container{
+  margin: 0 auto;
+
+  hr {
+    width: 60%;
+  }
+}
+
+.auth-form {
+  margin-top: 10%;
+  display: grid;
+  grid-row-gap: 15%;
+}
+
+@media only screen and (min-width: 758px) {
+  .auth-body {
+    margin-top: 5%;
+  }
+}
