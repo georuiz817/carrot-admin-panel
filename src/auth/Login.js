@@ -9,7 +9,6 @@ const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setErrors] = useState("");
-
   const Auth = useContext(AuthContext);
 
   const handleForm = (e) => {
@@ -64,8 +63,8 @@ const Login = ({ history }) => {
             Login
           </Button>
           <Link to="/signup">Dont have an account? Signup</Link>
-          <span>{error}</span>
         </form>
+        <span>{error}</span>
       </div>
     </div>
   );

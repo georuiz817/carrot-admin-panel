@@ -5,7 +5,7 @@ import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
-const Join = ({ history }) => {
+const SignUp = ({ history}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setErrors] = useState("");
@@ -16,7 +16,7 @@ const Join = ({ history }) => {
     firebase
       .auth()
       .setPersistence(firebase.auth.Auth.Persistence.SESSION)
-      .then(() => { 
+      .then(() => {
         firebase
           .auth()
           .createUserWithEmailAndPassword(email, password)
@@ -71,4 +71,4 @@ const Join = ({ history }) => {
   );
 };
 
-export default Join;
+export default SignUp;

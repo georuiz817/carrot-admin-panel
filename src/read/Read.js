@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@material-ui/core";
-const Read = ({ history, loggedIn }) => {
+const Read = ({ history }) => {
   const [products, setProducts] = useState(null);
   //const [sortLow, setSortLow] = useState(true);
 

@@ -2,16 +2,16 @@ import React from "react";
 import CreateAndUpdate from "../forms/CreateAndUpdate";
 import firebase from "../config/firebase";
 
-export default function Create(
-  {history,
+export default function Create({
+  history,
   name,
   setName,
   price,
   setPrice,
   category,
   setCategory,
-  clearFormFields}
-) {
+  clearFormFields,
+}) {
   const handleForm = (e) => {
     e.preventDefault();
     firebase
@@ -25,9 +25,7 @@ export default function Create(
       .then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
       })
-      .then(
-        clearFormFields()
-      )
+      .then(clearFormFields())
       .catch(function (error) {
         console.error("Error adding document: ", error);
       });

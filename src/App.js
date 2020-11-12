@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Redirect, Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import NavBar from "./nav-bar/NavBar";
 import Read from "./read/Read";
@@ -8,7 +8,6 @@ import "./App.scss";
 import Signup from "./auth/Signup";
 import Login from "./auth/Login";
 import Update from "./update/Update";
-
 export const AuthContext = React.createContext(null);
 
 function App() {
@@ -17,23 +16,14 @@ function App() {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("vegetable");
   let history = useHistory();
-
+console.log(loggedIn)
   useEffect(() => {
-   const api_key = process.env.REACT_APP_API_KEY;
+    const api_key = process.env.REACT_APP_API_KEY;
     const user = window.sessionStorage.getItem(
       `firebase:authUser:${api_key}:[DEFAULT]`
     );
     if (user) setLoggedIn(true);
   }, []);
-
-
-  
-console.log(loggedIn)
-  const handleLogOut = () => {
-    history.push("/login");
-    sessionStorage.clear();
-    setLoggedIn(false);
-  };
 
   const clearFormFields = () => {
     setName("");
@@ -44,17 +34,13 @@ console.log(loggedIn)
 
   return (
     <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
-      <NavBar
-        handleLogOut={handleLogOut}
-        loggedIn={loggedIn}
-        history={history}
-      />
+      <NavBar setLoggedIn={setLoggedIn} loggedIn={loggedIn} history={history} />
       <Switch>
-        <Route
-          exact
-          path="/"
-          render={(routerProps) => <Read {...routerProps} history={history} loggedIn={loggedIn} />}
-        />
+      <Route       exact
+          path="/">
+          {loggedIn ?  <Read history={history} loggedIn={loggedIn} />: <Redirect to='/login'/> }
+        </Route>
+ 
         <Route
           exact
           path="/create"

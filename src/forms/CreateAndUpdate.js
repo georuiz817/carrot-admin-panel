@@ -11,6 +11,9 @@ export default function CreateAndUpdate({
   setPrice,
   category,
   setCategory,
+  oldName,
+ oldPrice,
+ oldCategory,
 }) {
   const location = useLocation();
   return (
@@ -24,6 +27,7 @@ export default function CreateAndUpdate({
           className="signup-field"
           id="outlined-basic"
           label="Product Name"
+          placeholder={oldName}
           variant="outlined"
           required
           value={name}
@@ -32,7 +36,8 @@ export default function CreateAndUpdate({
         />
         <TextField
           id="outlined-number"
-          label="Price"
+          placeholder={oldPrice}
+          label="Price "
           type="number"
           required
           value={price}
@@ -47,6 +52,7 @@ export default function CreateAndUpdate({
           select
           label="Category"
           required
+          placeholder={oldCategory}
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           SelectProps={{
@@ -56,7 +62,7 @@ export default function CreateAndUpdate({
         >
           <option value="vegetable">vegetable</option>
           <option value="fruit">fruit</option>
-          <option value="meat/dairy">meat/dairy</option>
+          <option value="meat and dairy">meat/dairy</option>
           <option value="other">other</option>
         </TextField>
         <Button variant="outlined" type="submit">
