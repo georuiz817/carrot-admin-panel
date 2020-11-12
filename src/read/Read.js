@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@material-ui/core";
-const Read = ({ history }) => {
+const Read = ({ history, loggedIn }) => {
   const [products, setProducts] = useState(null);
   //const [sortLow, setSortLow] = useState(true);
 
@@ -55,14 +55,18 @@ const Read = ({ history }) => {
       >
         Add Product
       </Button>
-
       <div className="products">
         {products !== null ? (
           products.map((i) => (
             <Card className="card" id={i.id} key={i.id} variant="outlined">
-              <CardContent className="card-title">Name: {i.name.charAt(0).toUpperCase() + i.name.slice(1)}</CardContent>
+              <CardContent className="card-title">
+                Name: {i.name.charAt(0).toUpperCase() + i.name.slice(1)}
+              </CardContent>
               <CardContent>Price: ${i.price}</CardContent>
-              <CardContent>Category: {i.category.charAt(0).toUpperCase() + i.category.slice(1)}</CardContent>
+              <CardContent>
+                Category:{" "}
+                {i.category.charAt(0).toUpperCase() + i.category.slice(1)}
+              </CardContent>
               <FontAwesomeIcon
                 className="delete-icon"
                 onClick={() => {
@@ -72,7 +76,9 @@ const Read = ({ history }) => {
               />
               <FontAwesomeIcon
                 onClick={() => {
-                  history.push(`/update/${i.id}`);
+                  history.push(
+                    `/update/${i.id}/${i.name}/${i.price}/${i.category}`
+                  );
                 }}
                 className="delete-icon"
                 icon={faEdit}

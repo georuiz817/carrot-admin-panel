@@ -1,16 +1,20 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import 'firebase/auth'
- 
+const api_key = process.env.REACT_APP_API_KEY;
+const app_id = process.env.REACT_APP_APP_ID;
+const message_id = process.env.REACT_APP_MESSAGE;
+const measurement_id = process.env.REACT_APP_MEASUREMENT;
+
 var firebaseConfig = {
-  apiKey: "AIzaSyBTLA8KL6rAJzjHpk8Hr2d4Qb5AItE8Mbo",
+  apiKey: api_key,
   authDomain: "carrot-db.firebaseapp.com",
   databaseURL: "https://carrot-db.firebaseio.com",
   projectId: "carrot-db",
   storageBucket: "carrot-db.appspot.com",
-  messagingSenderId: "3868883997",
-  appId: "1:3868883997:web:90f2182a41adcd4ed15af4",
-  measurementId: "G-F3TGBG0W8D"
+  messagingSenderId: message_id ,
+  appId: app_id,
+  measurementId: measurement_id
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);

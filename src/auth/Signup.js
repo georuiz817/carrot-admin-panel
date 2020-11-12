@@ -16,7 +16,7 @@ const Join = ({ history }) => {
     firebase
       .auth()
       .setPersistence(firebase.auth.Auth.Persistence.SESSION)
-      .then(() => {
+      .then(() => { 
         firebase
           .auth()
           .createUserWithEmailAndPassword(email, password)
