@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import NavBar from "./nav-bar/NavBar";
@@ -16,14 +16,10 @@ function App() {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("vegetable");
   let history = useHistory();
-console.log(loggedIn)
-  useEffect(() => {
-    const api_key = process.env.REACT_APP_API_KEY;
-    const user = window.sessionStorage.getItem(
-      `firebase:authUser:${api_key}:[DEFAULT]`
-    );
-    if (user) setLoggedIn(true);
-  }, []);
+  const api_key = process.env.REACT_APP_API_KEY;
+  let logger = window.sessionStorage.getItem(
+    `firebase:authUser:${api_key}:[DEFAULT]`
+  );
 
   const clearFormFields = () => {
     setName("");
@@ -34,19 +30,15 @@ console.log(loggedIn)
 
   return (
     <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
-      <NavBar setLoggedIn={setLoggedIn} loggedIn={loggedIn} history={history} />
+      <NavBar logger={logger} history={history} />
       <Switch>
-      <Route       exact
-          path="/">
-          {loggedIn ?  <Read history={history} loggedIn={loggedIn} />: <Redirect to='/login'/> }
+        <Route exact path="/">
+          {logger ? <Read history={history} /> : <Redirect to="/login" />}
         </Route>
- 
-        <Route
-          exact
-          path="/create"
-          render={(routerProps) => (
+
+        <Route exact path="/create">
+          {logger ? (
             <Create
-              {...routerProps}
               history={history}
               name={name}
               setName={setName}
@@ -56,26 +48,13 @@ console.log(loggedIn)
               setCategory={setCategory}
               clearFormFields={clearFormFields}
             />
+          ) : (
+            <Redirect to="/login" />
           )}
-        />
-        <Route
-          exact
-          path="/signup"
-          render={(routerProps) => (
-            <Signup {...routerProps} history={history} />
-          )}
-        />
-        <Route
-          exact
-          path="/login"
-          render={(routerProps) => <Login {...routerProps} history={history} />}
-        />
-        <Route
-          exact
-          path="/update/:id/:oldName/:oldPrice/:oldCategory"
-          render={(routerProps) => (
+        </Route>
+        <Route exact path="/update/:id/:oldName/:oldPrice/:oldCategory">
+          {logger ? (
             <Update
-              {...routerProps}
               history={history}
               name={name}
               setName={setName}
@@ -85,8 +64,16 @@ console.log(loggedIn)
               setCategory={setCategory}
               clearFormFields={clearFormFields}
             />
+          ) : (
+            <Redirect to="/login" />
           )}
-        />
+        </Route>
+        <Route exact path="/signup">
+          {!logger ? <Signup history={history} /> : <Redirect to="/" />}
+        </Route>
+        <Route exact path="/login">
+          {!logger ? <Login history={history} /> : <Redirect to="/" />}
+        </Route>
       </Switch>
     </AuthContext.Provider>
   );
