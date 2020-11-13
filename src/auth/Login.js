@@ -23,6 +23,7 @@ const Login = ({ history }) => {
           .then((res) => {
             if (res.user) Auth.setLoggedIn(true);
             history.push("/");
+            window.scrollTo(0, 0);
           })
           .catch((e) => {
             setErrors(e.message);

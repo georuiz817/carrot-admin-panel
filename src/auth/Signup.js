@@ -24,6 +24,7 @@ const SignUp = ({ history}) => {
             console.log(res);
             history.push("/");
             if (res.user) Auth.setLoggedIn(true);
+            window.scrollTo(0, 0);
           })
           .catch((e) => {
             setErrors(e.message);
