@@ -65,7 +65,7 @@ const SignUp = ({ history}) => {
             Sign Up
           </Button>
           <Link to="/login">Already have an account? Login</Link>
-          <span>{error}</span>
+          <p>{error}</p>
         </form>
       </div>
     </div>

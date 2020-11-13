@@ -63,9 +63,9 @@ const Login = ({ history }) => {
           <Button variant="outlined" type="submit">
             Login
           </Button>
-          <Link to="/signup">Dont have an account? Signup</Link>
+          <Link to="/signup"><p className='errormsg'>Dont have an account? Signup</p></Link>
         </form>
-        <span>{error}</span>
+        <p>{error}</p>
       </div>
     </div>
   );
