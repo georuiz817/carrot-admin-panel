@@ -1,35 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import CreateAndUpdate from "../forms/CreateAndUpdate";
 import firebase from "../config/firebase";
 import { useParams } from "react-router-dom";
 
-export default function Update({
-  name,
-  setName,
-  price,
-  setPrice,
-  category,
-  setCategory,
-  unit,
-  setUnit,
-  clearFormFields,
-}) {
+export default function Update({ history }) {
   let { id, oldName, oldPrice, oldCategory, oldUnit } = useParams();
+  const [name, setName] = useState(oldName);
+  const [price, setPrice] = useState(oldPrice);
+  const [unit, setUnit] = useState(oldUnit);
+  const [category, setCategory] = useState(oldCategory);
 
-  let handleForm = (e) => {
+  async function handleForm(e) {
     e.preventDefault();
-    firebase
-      .firestore()
-      .collection("products")
-      .doc(`${id}`)
-      .update({
+    try {
+    await firebase.firestore().collection("products").doc(`${id}`).update({
         name,
         price,
         unit,
         category,
-      })
-      .then(clearFormFields());
-  };
+      },
+      setName(""),
+      setPrice(""),
+      setUnit(""),
+      setCategory(""),
+      
+      );
+    }
+
+    finally {
+        history.push("/");
+    }
+  }
 
   return (
     <div className="auth-body">

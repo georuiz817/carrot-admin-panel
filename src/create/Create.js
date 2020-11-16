@@ -1,19 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import CreateAndUpdate from "../forms/CreateAndUpdate";
 import firebase from "../config/firebase";
 
-export default function Create({
-  history,
-  name,
-  setName,
-  price,
-  setPrice,
-  category,
-  setCategory,
-  unit,
-  setUnit,
-  clearFormFields,
-}) {
+export default function Create({ history }) {
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [unit, setUnit] = useState("");
+  const [category, setCategory] = useState("vegetable");
+
   const handleForm = (e) => {
     e.preventDefault();
     firebase
@@ -28,7 +22,13 @@ export default function Create({
       .then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
       })
-      .then(clearFormFields())
+      .then(
+        setName(""),
+        setPrice(""),
+        setUnit(""),
+        setCategory("Vegetable"),
+        history.push("/")
+      )
       .catch(function (error) {
         console.error("Error adding document: ", error);
       });

@@ -8,27 +8,16 @@ import "./App.scss";
 import Signup from "./auth/Signup";
 import Login from "./auth/Login";
 import Update from "./update/Update";
+
 export const AuthContext = React.createContext(null);
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [unit, setUnit] = useState("");
-  const [category, setCategory] = useState("vegetable");
   let history = useHistory();
   const api_key = process.env.REACT_APP_API_KEY;
   let logger = window.sessionStorage.getItem(
     `firebase:authUser:${api_key}:[DEFAULT]`
   );
-
-  const clearFormFields = () => {
-    setName("");
-    setPrice("");
-    setUnit("");
-    setCategory("Vegetable");
-    history.push("/");
-  };
 
   return (
     <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
@@ -39,40 +28,13 @@ function App() {
         </Route>
 
         <Route exact path="/create">
-          {logger ? (
-            <Create
-              history={history}
-              name={name}
-              setName={setName}
-              price={price}
-              setPrice={setPrice}
-              category={category}
-              setCategory={setCategory}
-              unit={unit}
-              setUnit={setUnit}
-              clearFormFields={clearFormFields}
-            />
-          ) : (
-            <Redirect to="/login" />
-          )}
+          {logger ? <Create history={history} /> : <Redirect to="/login" />}
         </Route>
-        <Route exact path="/update/:id/:oldName/:oldPrice/:oldUnit/:oldCategory">
-          {logger ? (
-            <Update
-              history={history}
-              name={name}
-              setName={setName}
-              price={price}
-              setPrice={setPrice}
-              category={category}
-              setCategory={setCategory}
-              unit={unit}
-              setUnit={setUnit}
-              clearFormFields={clearFormFields}
-            />
-          ) : (
-            <Redirect to="/login" />
-          )}
+        <Route
+          exact
+          path="/update/:id/:oldName/:oldPrice/:oldUnit/:oldCategory"
+        >
+          {logger ? <Update history={history} /> : <Redirect to="/login" />}
         </Route>
         <Route exact path="/signup">
           {!logger ? <Signup history={history} /> : <Redirect to="/" />}

@@ -1,28 +1,23 @@
 .auth-body {
-  display: flex;
+  display: grid;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   margin-top: 20%;
+ 
 }
 
-.auth-container {
-  margin: 0 auto;
+ 
 
-  hr {
-    width: 60%;
-  }
+hr {
+  width: 60%;
+  margin-bottom: 5%;
 }
 
 .auth-form {
-  margin-top: 10%;
   display: grid;
   grid-row-gap: 10%;
-}
-
-.errormsg p {
-  font-size: 10px;
 }
 
 @media only screen and (min-width: 758px) {

@@ -5,7 +5,7 @@ import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
-const SignUp = ({ history}) => {
+const SignUp = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setErrors] = useState("");
@@ -34,40 +34,39 @@ const SignUp = ({ history}) => {
 
   return (
     <div className="auth-body">
-      <div className="auth-container">
-        <h1>Sign up</h1>
-        <hr></hr>
-        <form className="auth-form" onSubmit={(e) => handleForm(e)}>
-          <TextField
-            className="signup-field"
-            id="outlined-basic"
-            label="email"
-            variant="outlined"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            name="email"
-            type="email"
-            placeholder="email"
-          />
-          <TextField
-            id="outlined-basic"
-            label="password"
-            variant="outlined"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-            name="password"
-            value={password}
-            type="password"
-            placeholder="password"
-          />
-          <Button variant="outlined" type="submit">
-            Sign Up
-          </Button>
-          <Link to="/login">Already have an account? Login</Link>
-          <p>{error}</p>
-        </form>
-      </div>
+      <h1>Sign up</h1>
+      <hr></hr>
+      <form className="auth-form" onSubmit={(e) => handleForm(e)}>
+        <TextField
+          className="signup-field"
+          id="outlined-basic"
+          label="email"
+          variant="outlined"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          name="email"
+          type="email"
+          placeholder="email"
+        />
+        <TextField
+          id="outlined-basic"
+          label="password"
+          variant="outlined"
+          required
+          onChange={(e) => setPassword(e.target.value)}
+          name="password"
+          value={password}
+          type="password"
+          placeholder="password"
+        />
+        <Button variant="outlined" type="submit">
+          Sign Up
+        </Button>
+ 
+        <Link to="/login">Already have an account? Login</Link>
+      </form>
+      <span className='error-msg'>{error}</span>
     </div>
   );
 };
