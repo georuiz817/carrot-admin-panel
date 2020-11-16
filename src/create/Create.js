@@ -10,6 +10,8 @@ export default function Create({
   setPrice,
   category,
   setCategory,
+  unit,
+  setUnit,
   clearFormFields,
 }) {
   const handleForm = (e) => {
@@ -20,6 +22,7 @@ export default function Create({
       .add({
         name,
         price,
+        unit,
         category,
       })
       .then(function (docRef) {
@@ -40,6 +43,8 @@ export default function Create({
         setPrice={setPrice}
         category={category}
         setCategory={setCategory}
+        unit={unit}
+        setUnit={setUnit}
         handleForm={handleForm}
       />
     </div>

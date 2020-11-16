@@ -1,4 +1,4 @@
-.auth-body{
+.auth-body {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,7 +7,7 @@
   margin-top: 20%;
 }
 
-.auth-container{
+.auth-container {
   margin: 0 auto;
 
   hr {
@@ -18,10 +18,10 @@
 .auth-form {
   margin-top: 10%;
   display: grid;
-  grid-row-gap: 15%;
+  grid-row-gap: 10%;
 }
 
-.errormsg p{
+.errormsg p {
   font-size: 10px;
 }
 

@@ -10,9 +10,11 @@ export default function Update({
   setPrice,
   category,
   setCategory,
+  unit,
+  setUnit,
   clearFormFields,
 }) {
-  let { id, oldName, oldPrice, oldCategory } = useParams();
+  let { id, oldName, oldPrice, oldCategory, oldUnit } = useParams();
 
   let handleForm = (e) => {
     e.preventDefault();
@@ -23,6 +25,7 @@ export default function Update({
       .update({
         name,
         price,
+        unit,
         category,
       })
       .then(clearFormFields());
@@ -40,6 +43,9 @@ export default function Update({
         handleForm={handleForm}
         oldName={oldName}
         oldPrice={oldPrice}
+        oldUnit={oldUnit}
+        unit={unit}
+        setUnit={setUnit}
         oldCategory={oldCategory}
       />
     </div>

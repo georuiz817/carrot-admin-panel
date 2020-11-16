@@ -3,11 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCarrot } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@material-ui/core";
 
-export default function NavBar({ history, logger}) {
+export default function NavBar({ history, logger }) {
   const handleLogOut = () => {
     history.push("/login");
     sessionStorage.clear();
-
   };
 
   return (

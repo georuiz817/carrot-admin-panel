@@ -9,11 +9,14 @@ export default function CreateAndUpdate({
   setName,
   price,
   setPrice,
+  unit,
+  setUnit,
   category,
   setCategory,
   oldName,
- oldPrice,
- oldCategory,
+  oldUnit,
+  oldPrice,
+  oldCategory,
 }) {
   const location = useLocation();
   return (
@@ -26,18 +29,16 @@ export default function CreateAndUpdate({
         <TextField
           className="signup-field"
           id="outlined-basic"
-          label="Product Name"
-          placeholder={oldName}
+          placeholder={oldName ? oldName : 'name'}
           variant="outlined"
           required
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setName(e.target.value.toLowerCase())}
           name="product-name"
         />
         <TextField
           id="outlined-number"
-          placeholder={oldPrice}
-          label="Price "
+          placeholder={oldPrice ? `$ ${oldPrice}` : 'price'}
           type="number"
           required
           value={price}
@@ -46,6 +47,17 @@ export default function CreateAndUpdate({
             shrink: true,
           }}
           variant="outlined"
+        />
+        <TextField
+          className="signup-field"
+          id="outlined-basic"
+          placeholder={oldUnit ? oldUnit : 'unit'}
+          variant="outlined"
+          required
+          value={unit}
+          onChange={(e) => setUnit(e.target.value.toLowerCase())}
+          name="product-name"
+          helperText="price per: pound, ounce, gallon etc.."
         />
         <TextField
           id="outlined-select-currency-native"

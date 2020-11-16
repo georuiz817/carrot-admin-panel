@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import firebase from "../config/firebase";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-//import { TextField } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 const Read = ({ history }) => {
-  const [products, setProducts] = useState(null);
-  //const [sortLow, setSortLow] = useState(true);
+  const [products, setProducts] = useState("");
+  const [search, setSearch] = useState("");
+  const searchArray = [...products];
 
   useEffect(() => {
     grabProducts();
   }, []);
 
-  console.log(products);
   async function grabProducts() {
     await firebase
       .firestore()
@@ -28,6 +28,10 @@ const Read = ({ history }) => {
         setProducts(prodcutsWithID);
       });
   }
+
+  let filteredCategory = searchArray.filter((i) => {
+    return i.name.indexOf(search) !== -1;
+  });
 
   async function deleteProducts(id) {
     await firebase
@@ -55,18 +59,27 @@ const Read = ({ history }) => {
       >
         Add Product
       </Button>
+      <TextField
+        id="outlined-size-small"
+        variant="outlined"
+        size="small"
+        placeholder="search"
+        type="text"
+        value={search}
+        onChange={(e) => setSearch(e.target.value.toLowerCase())}
+      />
+
       <div className="products">
-        {products !== null ? (
-          products.map((i) => (
+        {products !== "" ? (
+          filteredCategory.map((i) => (
             <Card className="card" id={i.id} key={i.id} variant="outlined">
               <CardContent className="card-title">
-                Name: {i.name.charAt(0).toUpperCase() + i.name.slice(1)}
+                Name: {i.name.toLowerCase()}
               </CardContent>
-              <CardContent>Price: ${i.price}</CardContent>
               <CardContent>
-                Category:{" "}
-                {i.category.charAt(0).toUpperCase() + i.category.slice(1)}
+                Price: ${i.price} per {i.unit}
               </CardContent>
+              <CardContent>Category: {i.category}</CardContent>
               <FontAwesomeIcon
                 className="delete-icon"
                 onClick={() => {
@@ -77,7 +90,7 @@ const Read = ({ history }) => {
               <FontAwesomeIcon
                 onClick={() => {
                   history.push(
-                    `/update/${i.id}/${i.name}/${i.price}/${i.category}`
+                    `/update/${i.id}/${i.name}/${i.price}/${i.unit}/${i.category}`
                   );
                 }}
                 className="delete-icon"

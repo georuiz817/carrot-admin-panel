@@ -14,6 +14,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
+  const [unit, setUnit] = useState("");
   const [category, setCategory] = useState("vegetable");
   let history = useHistory();
   const api_key = process.env.REACT_APP_API_KEY;
@@ -24,6 +25,7 @@ function App() {
   const clearFormFields = () => {
     setName("");
     setPrice("");
+    setUnit("");
     setCategory("Vegetable");
     history.push("/");
   };
@@ -46,13 +48,15 @@ function App() {
               setPrice={setPrice}
               category={category}
               setCategory={setCategory}
+              unit={unit}
+              setUnit={setUnit}
               clearFormFields={clearFormFields}
             />
           ) : (
             <Redirect to="/login" />
           )}
         </Route>
-        <Route exact path="/update/:id/:oldName/:oldPrice/:oldCategory">
+        <Route exact path="/update/:id/:oldName/:oldPrice/:oldUnit/:oldCategory">
           {logger ? (
             <Update
               history={history}
@@ -62,6 +66,8 @@ function App() {
               setPrice={setPrice}
               category={category}
               setCategory={setCategory}
+              unit={unit}
+              setUnit={setUnit}
               clearFormFields={clearFormFields}
             />
           ) : (
