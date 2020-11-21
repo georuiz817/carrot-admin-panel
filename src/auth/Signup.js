@@ -28,6 +28,7 @@ const SignUp = ({ history }) => {
           })
           .catch((e) => {
             setErrors(e.message);
+            alert(error)
           });
       });
   };
@@ -66,7 +67,6 @@ const SignUp = ({ history }) => {
  
         <Link to="/login">Already have an account? Login</Link>
       </form>
-      <span className='error-msg'>{error}</span>
     </div>
   );
 };

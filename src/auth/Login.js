@@ -27,6 +27,7 @@ const Login = ({ history }) => {
           })
           .catch((e) => {
             setErrors(e.message);
+            alert(error)
           });
       });
   };
@@ -62,9 +63,7 @@ const Login = ({ history }) => {
         <Button variant="outlined" type="submit">
           Login
         </Button>
-       <span>{error}</span>
         <Link to="/signup">Dont have an account? Signup</Link>
-
       </form>
     </div>
   );
