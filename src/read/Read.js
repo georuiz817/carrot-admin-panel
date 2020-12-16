@@ -10,11 +10,23 @@ import { TextField } from "@material-ui/core";
 const Read = ({ history }) => {
   const [products, setProducts] = useState("");
   const [search, setSearch] = useState("");
+  const [sortByLow, setSortByLow] = useState("true");
   const searchArray = [...products];
+  console.log(sortByLow);
 
   useEffect(() => {
+    const checkForLow = localStorage.getItem("LocalLow");
+    if (checkForLow) {
+      setSortByLow(JSON.parse(checkForLow));
+    } else {
+      setSortByLow("true");
+    }
     grabProducts();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("LocalLow", JSON.stringify(sortByLow));
+  });
 
   async function grabProducts() {
     await firebase
@@ -47,18 +59,51 @@ const Read = ({ history }) => {
       });
   }
 
+  let sortChecker = (filteredCategory) => {
+    if (sortByLow === "true") {
+      return filteredCategory.sort(function (a, b) {
+        return a.price - b.price;
+      });
+    } else if (sortByLow === "false") {
+      return filteredCategory.sort(function (a, b) {
+        return b.price - a.price;
+      });
+    } else {
+      return null;
+    }
+  };
+
+ 
   return (
     <div className="read">
-      <Button
-        onClick={() => {
-          history.push("/create");
-        }}
-        className="add-btn"
-        variant="outlined"
-        type="submit"
-      >
-        Add Product
-      </Button>
+      <div className="add-and-filter">
+        <Button
+          onClick={() => {
+            history.push("/create");
+          }}
+          className="add-btn"
+          variant="outlined"
+          type="submit"
+        >
+          Add Product
+        </Button>
+        <TextField
+          size="small"
+          className="filter"
+          id="outlined-select-currency-native"
+          select
+          required
+          value={sortByLow}
+          onChange={(e) => setSortByLow(e.target.value)}
+          SelectProps={{
+            native: true,
+          }}
+          variant="outlined"
+        >
+          <option value="true">$ LOW - HIGH</option>
+          <option value="false">$ HIGH - LOW</option>
+        </TextField>
+      </div>
       <TextField
         id="outlined-size-small"
         variant="outlined"
@@ -71,7 +116,7 @@ const Read = ({ history }) => {
 
       <div className="products">
         {products !== "" ? (
-          filteredCategory.map((i) => (
+          sortChecker(filteredCategory).map((i) => (
             <Card className="card" id={i.id} key={i.id} variant="outlined">
               <CardContent className="card-title">
                 Name: {i.name.toLowerCase()}
@@ -99,7 +144,7 @@ const Read = ({ history }) => {
             </Card>
           ))
         ) : (
-          <p>loading...</p>
+          <h1>loading...</h1>
         )}
       </div>
     </div>

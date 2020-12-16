@@ -27,7 +27,7 @@ const Login = ({ history }) => {
           })
           .catch((e) => {
             setErrors(e.message);
-            alert(error)
+            console.log({error})
           });
       });
   };

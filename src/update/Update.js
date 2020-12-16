@@ -9,30 +9,27 @@ export default function Update({ history }) {
   const [price, setPrice] = useState(oldPrice);
   const [unit, setUnit] = useState(oldUnit);
   const [category, setCategory] = useState(oldCategory);
+  const [loading, setLoading] = useState(false);
 
   async function handleForm(e) {
     e.preventDefault();
+    setLoading(true);
     try {
-    await firebase.firestore().collection("products").doc(`${id}`).update({
-        name,
-        price,
-        unit,
-        category,
-      },
-      setName(""),
-      setPrice(""),
-      setUnit(""),
-      setCategory(""),
-      
+      await firebase.firestore().collection("products").doc(`${id}`).update(
+        {
+          name,
+          price,
+          unit,
+          category,
+        },
+        setLoading(false)
       );
-    }
-
-    finally {
-        history.push("/");
+    } finally {
+      history.push("/");
     }
   }
 
-  return (
+  return !loading ? (
     <div className="auth-body">
       <CreateAndUpdate
         name={name}
@@ -49,6 +46,10 @@ export default function Update({ history }) {
         setUnit={setUnit}
         oldCategory={oldCategory}
       />
+    </div>
+  ) : (
+    <div>
+      <p>loading</p>
     </div>
   );
 }
