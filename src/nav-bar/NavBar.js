@@ -1,14 +1,10 @@
 import React from "react";
+import { handleLogOut } from "../config/otherfunctions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCarrot } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@material-ui/core";
 
 export default function NavBar({ history, logger }) {
-  const handleLogOut = () => {
-    history.push("/login");
-    sessionStorage.clear();
-  };
-
   return (
     <nav className="nav">
       <h1
@@ -21,7 +17,7 @@ export default function NavBar({ history, logger }) {
       </h1>
       <div className="nav-btn">
         {logger ? (
-          <Button variant="outlined" onClick={() => handleLogOut()}>
+          <Button variant="outlined" onClick={() => handleLogOut(history)}>
             Logout
           </Button>
         ) : null}

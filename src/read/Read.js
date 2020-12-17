@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import firebase from "../config/firebase";
+import { deleteProducts } from "../config/fireBaseFunctions";
+import { grabProducts } from "../config/fireBaseFunctions";
+import { sortChecker } from "../config/otherfunctions";
+import { checkForLow } from "../config/otherfunctions";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,69 +14,22 @@ const Read = ({ history }) => {
   const [products, setProducts] = useState("");
   const [search, setSearch] = useState("");
   const [sortByLow, setSortByLow] = useState("true");
+  const [category, setCategory] = useState("");
   const searchArray = [...products];
-  console.log(sortByLow);
 
   useEffect(() => {
-    const checkForLow = localStorage.getItem("LocalLow");
-    if (checkForLow) {
-      setSortByLow(JSON.parse(checkForLow));
-    } else {
-      setSortByLow("true");
-    }
-    grabProducts();
+    checkForLow(setSortByLow);
+    grabProducts(setProducts);
   }, []);
 
   useEffect(() => {
     localStorage.setItem("LocalLow", JSON.stringify(sortByLow));
   });
 
-  async function grabProducts() {
-    await firebase
-      .firestore()
-      .collection("/products")
-      .get()
-      .then((querySnapshot) => {
-        const prodcutsWithID = querySnapshot.docs.map((doc) => {
-          return { id: doc.id, ...doc.data() };
-        });
-        setProducts(prodcutsWithID);
-      });
-  }
-
   let filteredCategory = searchArray.filter((i) => {
     return i.name.indexOf(search) !== -1;
   });
 
-  async function deleteProducts(id) {
-    await firebase
-      .firestore()
-      .collection("/products")
-      .doc(`${id}`)
-      .delete()
-      .then(function () {
-        document.getElementById(`${id}`).remove();
-      })
-      .catch(function (error) {
-        console.error("Error removing document: ", error);
-      });
-  }
-
-  let sortChecker = (filteredCategory) => {
-    if (sortByLow === "true") {
-      return filteredCategory.sort(function (a, b) {
-        return a.price - b.price;
-      });
-    } else if (sortByLow === "false") {
-      return filteredCategory.sort(function (a, b) {
-        return b.price - a.price;
-      });
-    } else {
-      return null;
-    }
-  };
-
- 
   return (
     <div className="read">
       <div className="add-and-filter">
@@ -87,6 +43,25 @@ const Read = ({ history }) => {
         >
           Add Product
         </Button>
+        <TextField
+          class="category-input-home"
+          id="outlined-select-currency-native"
+          select
+          label="Category"
+          placeholder="Category"
+          size="small"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          SelectProps={{
+            native: true,
+          }}
+          variant="outlined"
+        >
+          <option value="vegetable">vegetable</option>
+          <option value="fruit">fruit</option>
+          <option value="meat and dairy">meat/dairy</option>
+          <option value="other">other</option>
+        </TextField>
         <TextField
           size="small"
           className="filter"
@@ -116,7 +91,7 @@ const Read = ({ history }) => {
 
       <div className="products">
         {products !== "" ? (
-          sortChecker(filteredCategory).map((i) => (
+          sortChecker(filteredCategory, sortByLow).map((i) => (
             <Card className="card" id={i.id} key={i.id} variant="outlined">
               <CardContent className="card-title">
                 Name: {i.name.toLowerCase()}

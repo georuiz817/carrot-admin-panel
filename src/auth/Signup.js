@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
+import { signUpWithFireBase } from "../config/fireBaseFunctions";
 import { AuthContext } from "../App";
-import firebase from "../config/firebase";
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
@@ -11,32 +11,24 @@ const SignUp = ({ history }) => {
   const [error, setErrors] = useState("");
   const Auth = useContext(AuthContext);
 
-  const handleForm = (e) => {
-    e.preventDefault();
-    firebase
-      .auth()
-      .setPersistence(firebase.auth.Auth.Persistence.SESSION)
-      .then(() => {
-        firebase
-          .auth()
-          .createUserWithEmailAndPassword(email, password)
-          .then((res) => {
-            console.log(res);
-            history.push("/");
-            if (res.user) Auth.setLoggedIn(true);
-            window.scrollTo(0, 0);
-          })
-          .catch((e) => {
-            setErrors(e.message);
-          });
-      });
-  };
-
   return (
     <div className="auth-body">
       <h1>Sign up</h1>
       <hr></hr>
-      <form className="auth-form" onSubmit={(e) => handleForm(e)}>
+      <form
+        className="auth-form"
+        onSubmit={(e) =>
+          signUpWithFireBase(
+            e,
+            password,
+            email,
+            Auth,
+            setErrors,
+            error,
+            history
+          )
+        }
+      >
         <TextField
           className="signup-field"
           id="outlined-basic"
@@ -65,7 +57,7 @@ const SignUp = ({ history }) => {
         </Button>
         <Link to="/login">Already have an account? Login</Link>
       </form>
-      {error? {error} : null}
+      {error ? { error } : null}
     </div>
   );
 };
