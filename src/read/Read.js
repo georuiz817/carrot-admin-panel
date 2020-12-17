@@ -14,7 +14,6 @@ const Read = ({ history }) => {
   const [products, setProducts] = useState("");
   const [search, setSearch] = useState("");
   const [sortByLow, setSortByLow] = useState("true");
-  const [category, setCategory] = useState("");
   const searchArray = [...products];
 
   useEffect(() => {
@@ -43,25 +42,6 @@ const Read = ({ history }) => {
         >
           Add Product
         </Button>
-        <TextField
-          class="category-input-home"
-          id="outlined-select-currency-native"
-          select
-          label="Category"
-          placeholder="Category"
-          size="small"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          SelectProps={{
-            native: true,
-          }}
-          variant="outlined"
-        >
-          <option value="vegetable">vegetable</option>
-          <option value="fruit">fruit</option>
-          <option value="meat and dairy">meat/dairy</option>
-          <option value="other">other</option>
-        </TextField>
         <TextField
           size="small"
           className="filter"
