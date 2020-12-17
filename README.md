@@ -2,9 +2,12 @@
 
 https://carrot-admin.netlify.app/
 
-carrot-admin allows users to be able to play around with google firebases authentication and sign up with an account. From there you will be an 'admin' of the carrot company and have the ability to play around wiht some of the food stock. All CRUD actions are avaliable to you and feel free to do whatever you want. 
+Made with React/Firebase
 
-I created this site just for some fun and to get a bit more practice on google firebase. It's a fantastci tool if you need a quick back end. 
+carrot-admin allows users to be able to play around with google firebases authentication and sign up with an account. From there you will be an 'admin' of the carrot company and have the ability to play around with some of the food stock. All CRUD actions are avaliable to you and feel free to do whatever you want. 
+
+A noteable folder within src is the one labled 'config'. You'll be able to see all the firebase functions that are sending request to the database as well as other
+misc. functions used to manipulate our data.
 
 ## Available Scripts
 
