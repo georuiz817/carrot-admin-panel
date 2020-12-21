@@ -7,10 +7,11 @@
   margin-bottom: 2%;
 }
 
-.delete-icon {
+.card-icon {
   cursor: pointer;
   margin-left: 1rem;
   margin-right: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .products {
@@ -20,7 +21,7 @@
   grid-row-gap: 1rem;
 }
 
-.add-and-filter{
+.add-and-filter {
   display: grid;
   grid-template-columns: auto auto;
 }
@@ -29,11 +30,11 @@
   justify-self: start;
 }
 
-.add-and-filter .filter{
- justify-self: end; 
+.add-and-filter .filter {
+  justify-self: end;
 }
 
-.category-input-home{
+.category-input-home {
   justify-self: center;
 }
 
@@ -44,5 +45,3 @@
     grid-column-gap: 0.5%;
   }
 }
-
- 

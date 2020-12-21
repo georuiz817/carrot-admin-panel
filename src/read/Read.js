@@ -81,7 +81,7 @@ const Read = ({ history }) => {
               </CardContent>
               <CardContent>Category: {i.category}</CardContent>
               <FontAwesomeIcon
-                className="delete-icon"
+                className="card-icon"
                 onClick={() => {
                   deleteProducts(i.id);
                 }}
@@ -93,7 +93,7 @@ const Read = ({ history }) => {
                     `/update/${i.id}/${i.name}/${i.price}/${i.unit}/${i.category}`
                   );
                 }}
-                className="delete-icon"
+                className="card-icon"
                 icon={faEdit}
               />
             </Card>

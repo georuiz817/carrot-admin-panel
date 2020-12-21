@@ -1,5 +1,71 @@
 import firebase from "../config/firebase";
 
+//ADD PRODUCT
+export const addProduct = (
+  e,
+  name,
+  price,
+  unit,
+  category,
+  history,
+  setName,
+  setPrice,
+  setUnit,
+  setCategory
+) => {
+  e.preventDefault();
+  firebase
+    .firestore()
+    .collection("products")
+    .add({
+      name,
+      price,
+      unit,
+      category,
+    })
+    .then(function (docRef) {
+      console.log("Document written with ID: ", docRef.id);
+    })
+    .then(
+      setName(""),
+      setPrice(""),
+      setUnit(""),
+      setCategory("Vegetable"),
+      history.push("/")
+    )
+    .catch(function (error) {
+      console.error("Error adding document: ", error);
+    });
+};
+
+//UPDATE PRODUCT
+export const updateProduct = async (
+  e,
+  setLoading,
+  id,
+  name,
+  price,
+  unit,
+  category,
+  history
+) => {
+  e.preventDefault();
+  setLoading(true);
+  try {
+    await firebase.firestore().collection("products").doc(`${id}`).update(
+      {
+        name,
+        price,
+        unit,
+        category,
+      },
+      setLoading(false)
+    );
+  } finally {
+    history.push("/");
+  }
+};
+
 //DELETE PRODUCT
 export const deleteProducts = async (id) => {
   await firebase

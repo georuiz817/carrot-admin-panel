@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import CreateAndUpdate from "../forms/CreateAndUpdate";
-import firebase from "../config/firebase";
+import { addProduct } from "../config/fireBaseFunctions";
+import { TextField } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 export default function Create({ history }) {
   const [name, setName] = useState("");
@@ -8,45 +9,83 @@ export default function Create({ history }) {
   const [unit, setUnit] = useState("");
   const [category, setCategory] = useState("vegetable");
 
-  const handleForm = (e) => {
-    e.preventDefault();
-    firebase
-      .firestore()
-      .collection("products")
-      .add({
-        name,
-        price,
-        unit,
-        category,
-      })
-      .then(function (docRef) {
-        console.log("Document written with ID: ", docRef.id);
-      })
-      .then(
-        setName(""),
-        setPrice(""),
-        setUnit(""),
-        setCategory("Vegetable"),
-        history.push("/")
-      )
-      .catch(function (error) {
-        console.error("Error adding document: ", error);
-      });
-  };
-
   return (
     <div className="auth-body">
-      <CreateAndUpdate
-        name={name}
-        setName={setName}
-        price={price}
-        setPrice={setPrice}
-        category={category}
-        setCategory={setCategory}
-        unit={unit}
-        setUnit={setUnit}
-        handleForm={handleForm}
-      />
+      <div className="auth-container">
+        <h1>Add Product</h1>
+        <hr></hr>
+        <form
+          className="auth-form"
+          onSubmit={(e) =>
+            addProduct(
+              e,
+              name,
+              price,
+              unit,
+              category,
+              history,
+              setName,
+              setPrice,
+              setUnit,
+              setCategory
+            )
+          }
+        >
+          <TextField
+            className="signup-field"
+            id="outlined-basic"
+            placeholder="name"
+            variant="outlined"
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value.toLowerCase())}
+            name="product-name"
+          />
+          <TextField
+            id="outlined-number"
+            placeholder="price"
+            type="number"
+            required
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          />
+          <TextField
+            className="signup-field"
+            id="outlined-basic"
+            placeholder="unit"
+            variant="outlined"
+            required
+            value={unit}
+            onChange={(e) => setUnit(e.target.value.toLowerCase())}
+            name="product-name"
+            helperText="price per: pound, ounce, gallon etc.."
+          />
+          <TextField
+            id="outlined-select-currency-native"
+            select
+            label="Category"
+            required
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            SelectProps={{
+              native: true,
+            }}
+            variant="outlined"
+          >
+            <option value="vegetable">vegetable</option>
+            <option value="fruit">fruit</option>
+            <option value="meat and dairy">meat/dairy</option>
+            <option value="other">other</option>
+          </TextField>
+          <Button variant="outlined" type="submit">
+            Submit
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }
