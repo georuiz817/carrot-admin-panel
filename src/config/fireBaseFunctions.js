@@ -31,7 +31,7 @@ export const addProduct = (
       setPrice(""),
       setUnit(""),
       setCategory("Vegetable"),
-      history.push("/")
+      history.push("/read")
     )
     .catch(function (error) {
       console.error("Error adding document: ", error);
@@ -62,7 +62,7 @@ export const updateProduct = async (
       setLoading(false)
     );
   } finally {
-    history.push("/");
+    history.push("/read");
   }
 };
 
@@ -115,7 +115,7 @@ export const logInWithFireBase = (
         .signInWithEmailAndPassword(email, password)
         .then((res) => {
           if (res.user) Auth.setLoggedIn(true);
-          history.push("/");
+          history.push("/read");
           window.scrollTo(0, 0);
         })
         .catch((e) => {
@@ -145,7 +145,7 @@ export const signUpWithFireBase = (
         .createUserWithEmailAndPassword(email, password)
         .then((res) => {
           console.log(res);
-          history.push("/");
+          history.push("/read");
           if (res.user) Auth.setLoggedIn(true);
           window.scrollTo(0, 0);
         })

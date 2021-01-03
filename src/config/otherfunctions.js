@@ -13,6 +13,11 @@ export const sortChecker = (filteredCategory, sortByLow) => {
   }
 };
 
+//SORT PRODCUT BY CATEGORY
+export const categoryFilter = (filteredCategory, sortedCategory) => {
+  filteredCategory.filter((i) => i.category === sortedCategory);
+};
+
 //PERSISTING PRICE FILTERING TO LOCAL STORAGE
 export const checkForLow = (setSortByLow) => {
   let localLow = localStorage.getItem("LocalLow");
@@ -25,7 +30,6 @@ export const checkForLow = (setSortByLow) => {
 
 //LOGOUT
 export const handleLogOut = (history) => {
-  history.push("/login");
+  history.push("/");
   sessionStorage.clear();
 };
-

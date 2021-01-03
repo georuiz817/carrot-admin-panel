@@ -9,7 +9,7 @@ export default function NavBar({ history, logger }) {
     <nav className="nav">
       <h1
         onClick={() => {
-          history.push("/");
+          history.push("/read");
         }}
         className="heading"
       >
