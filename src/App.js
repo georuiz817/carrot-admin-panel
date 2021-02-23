@@ -16,6 +16,8 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   let history = useHistory();
   const api_key = process.env.REACT_APP_API_KEY;
+
+  //logger will check if a user is already signed in through session storage, this will help determine where they should be routed to
   let logger = window.sessionStorage.getItem(
     `firebase:authUser:${api_key}:[DEFAULT]`
   );

@@ -21,22 +21,11 @@
   grid-row-gap: 1rem;
 }
 
-.add-and-filter {
-  display: grid;
-  grid-template-columns: auto auto;
-}
 
 .add-and-filter .add-btn {
-  justify-self: start;
+  margin-right: 2%;
 }
 
-.add-and-filter .filter {
-  justify-self: end;
-}
-
-.category-input-home {
-  justify-self: center;
-}
 
 @media only screen and (max-width: 758px) {
   .products {

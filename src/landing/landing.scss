@@ -1,5 +1,5 @@
 .landing-main {
-  padding: 5%;
+  padding: 0 5% 0 5%;
   animation: fadeIn ease 3s;
   -webkit-animation: fadeIn ease 3s;
 }
@@ -10,14 +10,20 @@
   grid-row-gap: 25%;
 }
 
+
 @media only screen and (min-width: 758px) {
-  .landing-main {
-    max-width: 50%;
+    .ladngin-main{
+        padding: 0 5% 0 0;
+    }
+  .landing-title{
+      width: 30%;
   }
   .btn-group {
     display: grid;
-    grid-template-columns: 25% 25%;
-    grid-column-gap: 5%;
+    width: 30%;
+  }
+  #landing-img {
+    width: 15%;
   }
 }
 
@@ -28,6 +34,7 @@
   -o-animation: fadeIn ease 3s;
   -ms-animation: fadeIn ease 3s;
 }
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
