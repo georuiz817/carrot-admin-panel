@@ -4,11 +4,18 @@
 }
 
 .heading{
-margin: 2%;
+margin-left: 5%;
 cursor: pointer;;
 }
 
 
 .nav-btn{
-margin: 2%;
+margin-right: 5%;
+margin-top: 2%;
 }
+
+@media only screen and (max-width: 600px) {
+    .nav-btn {
+margin-top: 5%;
+    }
+  }

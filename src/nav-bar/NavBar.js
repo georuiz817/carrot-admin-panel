@@ -13,7 +13,7 @@ export default function NavBar({ history, logger }) {
         }}
         className="heading"
       >
-        <FontAwesomeIcon icon={faCarrot} /> | Admin
+        <FontAwesomeIcon icon={faCarrot} /> Admin
       </h1>
       <div className="nav-btn">
         {logger ? (
