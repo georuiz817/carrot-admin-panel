@@ -150,6 +150,7 @@ export const signUpWithFireBase = (
           window.scrollTo(0, 0);
         })
         .catch((e) => {
+          setErrors(e.message);
           console.log({ error });
         });
     });

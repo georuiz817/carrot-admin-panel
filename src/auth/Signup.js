@@ -14,7 +14,6 @@ const SignUp = ({ history }) => {
   return (
     <div className="auth-body">
       <h1>Sign up</h1>
-      <hr></hr>
       <form
         className="auth-form"
         onSubmit={(e) =>
@@ -57,7 +56,7 @@ const SignUp = ({ history }) => {
         </Button>
         <Link to="/login">Already have an account? Login</Link>
       </form>
-      {error ? { error } : null}
+         <div className="error">{error}</div>
     </div>
   );
 };

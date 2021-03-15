@@ -1,0 +1,17 @@
+.error-div{
+    text-align: center;
+    margin-top: 40%;
+}
+
+#errorImage{
+width: 50%;
+}
+
+@media only screen and (min-width: 758px) {
+.error-div{
+    margin-top: 5%;
+}
+#errorImage{
+    width: 20%;
+}
+}

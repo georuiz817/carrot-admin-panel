@@ -1,17 +1,15 @@
 //SORT PRODCUT BY PRICE
-//if sortbyLow is true return array in order by prices in ascending value 
+//if sortbyLow is true return array in order by prices in ascending value
 //if false return  arry in order by prices in decending value
 export const sortChecker = (filteredCategory, sortByLow) => {
   if (sortByLow === "true") {
     return filteredCategory.sort(function (a, b) {
       return a.price - b.price;
     });
-  } else if (sortByLow === "false") {
+  } else {
     return filteredCategory.sort(function (a, b) {
       return b.price - a.price;
     });
-  } else {
-    return null;
   }
 };
 

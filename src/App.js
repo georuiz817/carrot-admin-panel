@@ -9,7 +9,7 @@ import Landing from "./landing/Landing";
 import Signup from "./auth/Signup";
 import Login from "./auth/Login";
 import Update from "./update/Update";
-
+import ErrorPage from './errorPage/ErrorPage'
 export const AuthContext = React.createContext(null);
 
 function App() {
@@ -48,6 +48,7 @@ function App() {
         <Route exact path="/login">
           {!logger ? <Login history={history} /> : <Redirect to="/read" />}
         </Route>
+        <Route component={ErrorPage} />
       </Switch>
     </AuthContext.Provider>
   );

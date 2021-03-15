@@ -13,7 +13,6 @@ export default function Create({ history }) {
     <div className="auth-body">
       <div className="auth-container">
         <h1>Add Product</h1>
-        <hr></hr>
         <form
           className="auth-form"
           onSubmit={(e) =>

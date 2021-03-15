@@ -16,7 +16,6 @@ export default function Update({ history }) {
     <div className="auth-body">
       <div className="auth-container">
         <h1>Update Product</h1>
-        <hr></hr>
         <form
           className="auth-form"
           onSubmit={(e) =>
