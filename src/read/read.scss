@@ -21,7 +21,7 @@
   grid-row-gap: 1rem;
 }
 
-.add-and-filter .filter{
+.add-and-filter .filter {
   display: block;
   margin-top: 1%;
   margin-bottom: 1%;
@@ -32,6 +32,12 @@
   margin-right: 2%;
 }
 
+.grow {
+  transition: all 0.2s ease-in-out;
+}
+.grow:hover {
+  transform: scale(1.1);
+}
 
 @media only screen and (max-width: 758px) {
   .products {

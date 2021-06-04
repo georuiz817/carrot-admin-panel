@@ -5,7 +5,8 @@ import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 
 export default function Update({ history }) {
-  let { id, oldName, oldPrice, oldCategory, oldUnit } = useParams();
+  let { id, oldName, oldPrice, oldUnit, oldCategory, oldIcon } = useParams();
+  const [icon, setIcon] = useState(oldIcon);
   const [name, setName] = useState(oldName);
   const [price, setPrice] = useState(oldPrice);
   const [unit, setUnit] = useState(oldUnit);
@@ -23,6 +24,7 @@ export default function Update({ history }) {
               e,
               setLoading,
               id,
+              icon,
               name,
               price,
               unit,
@@ -31,6 +33,16 @@ export default function Update({ history }) {
             )
           }
         >
+          <TextField
+            className="signup-field"
+            id="outlined-basic"
+            placeholder={oldIcon}
+            variant="outlined"
+            value={icon}
+            helperText="Optional"
+            onChange={(e) => setIcon(e.target.value)}
+            name="icon"
+          />
           <TextField
             className="signup-field"
             id="outlined-basic"
@@ -54,16 +66,27 @@ export default function Update({ history }) {
             variant="outlined"
           />
           <TextField
+            id="outlined-select-currency-native"
             className="signup-field"
-            id="outlined-basic"
-            placeholder={oldUnit}
+            select
+            placeholder="unit"
             variant="outlined"
             required
+            label="Unit"
             value={unit}
-            onChange={(e) => setUnit(e.target.value.toLowerCase())}
+            onChange={(e) => setUnit(e.target.value)}
             name="product-name"
             helperText="price per: pound, ounce, gallon etc.."
-          />
+            SelectProps={{
+              native: true,
+            }}
+          >
+            <option value="item">item</option>
+            <option value="pound">pound</option>
+            <option value="pint">pint</option>
+            <option value="gallon">gallon</option>
+            <option value="liter">liter</option>
+          </TextField>
           <TextField
             id="outlined-select-currency-native"
             select

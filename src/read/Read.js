@@ -72,8 +72,9 @@ const Read = ({ history }) => {
       <div className="products">
         {products !== "" ? (
           sortChecker(filteredCategory, sortByLow).map((i) => (
-            <Card className="card" id={i.id} key={i.id} variant="outlined">
+            <Card className="card grow" id={i.id} key={i.id} variant="outlined">
               <CardContent className="card-title">
+                {i.icon}
                 Name: {i.name.toLowerCase()}
               </CardContent>
               <CardContent>
@@ -90,7 +91,7 @@ const Read = ({ history }) => {
               <FontAwesomeIcon
                 onClick={() => {
                   history.push(
-                    `/update/${i.id}/${i.name}/${i.price}/${i.unit}/${i.category}`
+                    `/update/${i.id}/${i.name}/${i.price}/${i.unit}/${i.category}/${i.icon}`
                   );
                 }}
                 className="card-icon"

@@ -1,6 +1,11 @@
-export const sortChecker = (filteredCategory, sortByLow) => {
-  return sortByLow === 'true' ? filteredCategory.sort(function (a, b) {return a.price - b.price}) : 
-  filteredCategory.sort(function (a, b) {return b.price - a.price;}) ;
+ export const sortChecker = (filteredCategory, sortByLow) => {
+  return sortByLow === "true"
+    ? filteredCategory.sort(function (a, b) {
+        return a.price - b.price;
+      })
+    : filteredCategory.sort(function (a, b) {
+        return b.price - a.price;
+      });
 };
 
 //PERSISTING PRICE FILTERING TO LOCAL STORAGE

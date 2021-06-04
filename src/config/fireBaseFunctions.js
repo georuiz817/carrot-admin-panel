@@ -3,6 +3,7 @@ import firebase from "../config/firebase";
 //ADD PRODUCT
 export const addProduct = (
   e,
+  icon,
   name,
   price,
   unit,
@@ -18,6 +19,7 @@ export const addProduct = (
     .firestore()
     .collection("products")
     .add({
+      icon,
       name,
       price,
       unit,
@@ -43,6 +45,7 @@ export const updateProduct = async (
   e,
   setLoading,
   id,
+  icon,
   name,
   price,
   unit,
@@ -54,6 +57,7 @@ export const updateProduct = async (
   try {
     await firebase.firestore().collection("products").doc(`${id}`).update(
       {
+        icon,
         name,
         price,
         unit,
