@@ -9,9 +9,13 @@
 
 .card-icon {
   cursor: pointer;
-  margin-left: 1rem;
   margin-right: 1rem;
   margin-bottom: 0.5rem;
+}
+
+.card-emoji {
+  text-align: center;
+  font-size: 3rem;
 }
 
 .products {
@@ -37,6 +41,12 @@
 }
 .grow:hover {
   transform: scale(1.1);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-items: center;
 }
 
 @media only screen and (max-width: 758px) {

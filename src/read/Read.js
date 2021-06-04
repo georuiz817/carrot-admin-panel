@@ -72,31 +72,41 @@ const Read = ({ history }) => {
       <div className="products">
         {products !== "" ? (
           sortChecker(filteredCategory, sortByLow).map((i) => (
-            <Card className="card grow" id={i.id} key={i.id} variant="outlined">
-              <CardContent className="card-title">
-                {i.icon}
-                Name: {i.name.toLowerCase()}
-              </CardContent>
-              <CardContent>
-                Price: ${i.price} per {i.unit}
-              </CardContent>
-              <CardContent>Category: {i.category}</CardContent>
-              <FontAwesomeIcon
-                className="card-icon"
-                onClick={() => {
-                  deleteProducts(i.id);
-                }}
-                icon={faTrash}
-              />
-              <FontAwesomeIcon
-                onClick={() => {
-                  history.push(
-                    `/update/${i.id}/${i.name}/${i.price}/${i.unit}/${i.category}/${i.icon}`
-                  );
-                }}
-                className="card-icon"
-                icon={faEdit}
-              />
+            <Card
+              className="card grow card-grid"
+              id={i.id}
+              key={i.id}
+              variant="outlined"
+            >
+              <div>
+                <CardContent className="card-title">
+                  <h1 class='card-emoji'>{i.icon}</h1>
+                </CardContent>
+              </div>
+              <div>
+                <h3>{i.name.toLowerCase()}</h3>
+                <p> {i.category} </p>
+                <p>
+                  ${i.price} per {i.unit}
+                </p>
+
+                <FontAwesomeIcon
+                  className="card-icon"
+                  onClick={() => {
+                    deleteProducts(i.id);
+                  }}
+                  icon={faTrash}
+                />
+                <FontAwesomeIcon
+                  onClick={() => {
+                    history.push(
+                      `/update/${i.id}/${i.name}/${i.price}/${i.unit}/${i.category}/${i.icon}`
+                    );
+                  }}
+                  className="card-icon"
+                  icon={faEdit}
+                />
+              </div>
             </Card>
           ))
         ) : (

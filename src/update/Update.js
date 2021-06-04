@@ -39,7 +39,6 @@ export default function Update({ history }) {
             placeholder={oldIcon}
             variant="outlined"
             value={icon}
-            helperText="Optional"
             onChange={(e) => setIcon(e.target.value)}
             name="icon"
           />
