@@ -5,9 +5,13 @@ body {
   font-family: "Titillium Web", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f3f3f4;
+  background-color: white;
   color: #14110f;
   margin-bottom: 2%;
+}
+
+body, html{
+  height: 100%;
 }
 
 code {
