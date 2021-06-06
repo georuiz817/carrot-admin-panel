@@ -28,7 +28,7 @@ const Read = ({ history }) => {
   return (
     <div className="read">
       <div class="read-header">
-        <h2>Hi, George!</h2>
+        <h2>Hello!</h2>
         <p>What would you like to do today?</p>
       </div>
       <TextField
