@@ -41,6 +41,7 @@ export default function Create({ history }) {
             value={icon}
             onChange={(e) => setIcon(e.target.value)}
             name="icon"
+            helperText={<a rel="noreferrer"  target="_blank" href='https://emojipedia.org/'>emojipedia.org</a>}
           />
           <TextField
             className="signup-field"
@@ -100,7 +101,7 @@ export default function Create({ history }) {
           >
             <option value="vegetable">vegetable</option>
             <option value="fruit">fruit</option>
-            <option value="meat and dairy">meat/dairy</option>
+            <option value="meat">meat</option>
             <option value="other">other</option>
           </TextField>
           <Button variant="outlined" type="submit">

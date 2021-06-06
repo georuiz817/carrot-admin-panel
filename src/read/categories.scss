@@ -1,0 +1,40 @@
+.read-categories-btns {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20%;
+  grid-template-rows: auto;
+  text-align: center;
+  column-gap: 6.666%;
+}
+
+.read-categories-btn:hover {
+  cursor: pointer;
+}
+
+.read-categories-btn {
+  padding: 10%;
+  border-radius: 15px;
+}
+
+.vegetable {
+  background-color: rgba(207, 238, 158, 0.3) !important;
+}
+
+.fruit {
+  background-color: rgba(173, 122, 153, 0.3) !important;
+}
+
+.meat {
+  background-color: rgba(233, 79, 55, 0.3) !important;
+}
+
+.other {
+  background-color: rgba(109, 192, 213, 0.3) !important;
+}
+
+.border-15 {
+  border-radius: 15px;
+}
+
+.read-categories-btns span {
+  display: block;
+}

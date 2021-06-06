@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { deleteProducts } from "../config/fireBaseFunctions";
+import Categories from "./Categories";
+import Products from "./Products";
+import ReadBtns from "./ReadBtns";
 import { grabProducts } from "../config/fireBaseFunctions";
-import { sortChecker } from "../config/otherfunctions";
 import { checkForLow } from "../config/otherfunctions";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
+
 const Read = ({ history }) => {
   const [products, setProducts] = useState("");
   const [search, setSearch] = useState("");
@@ -31,88 +27,28 @@ const Read = ({ history }) => {
 
   return (
     <div className="read">
-      <div className="add-and-filter">
-        <Button
-          onClick={() => {
-            history.push("/create");
-          }}
-          className="add-btn"
-          variant="outlined"
-          type="submit"
-        >
-          Add Product
-        </Button>
-        <TextField
-          size="small"
-          className="filter"
-          id="outlined-select-currency-native"
-          select
-          required
-          value={sortByLow}
-          onChange={(e) => setSortByLow(e.target.value)}
-          SelectProps={{
-            native: true,
-          }}
-          variant="outlined"
-        >
-          <option value="true">$ LOW - HIGH</option>
-          <option value="false">$ HIGH - LOW</option>
-        </TextField>
+      <div class="read-header">
+        <h2>Hi, George!</h2>
+        <p>What would you like to do today?</p>
       </div>
       <TextField
         id="outlined-size-small"
         variant="outlined"
         size="small"
-        placeholder="search"
+        fullWidth
+        placeholder="search by item"
         type="text"
         value={search}
         onChange={(e) => setSearch(e.target.value.toLowerCase())}
       />
-
-      <div className="products">
-        {products !== "" ? (
-          sortChecker(filteredCategory, sortByLow).map((i) => (
-            <Card
-              className="card grow card-grid"
-              id={i.id}
-              key={i.id}
-              variant="outlined"
-            >
-              <div>
-                <CardContent className="card-title">
-                  <h1 class='card-emoji'>{i.icon}</h1>
-                </CardContent>
-              </div>
-              <div>
-                <h3>{i.name.toLowerCase()}</h3>
-                <p> {i.category} </p>
-                <p>
-                  ${i.price} per {i.unit}
-                </p>
-
-                <FontAwesomeIcon
-                  className="card-icon"
-                  onClick={() => {
-                    deleteProducts(i.id);
-                  }}
-                  icon={faTrash}
-                />
-                <FontAwesomeIcon
-                  onClick={() => {
-                    history.push(
-                      `/update/${i.id}/${i.name}/${i.price}/${i.unit}/${i.category}/${i.icon}`
-                    );
-                  }}
-                  className="card-icon"
-                  icon={faEdit}
-                />
-              </div>
-            </Card>
-          ))
-        ) : (
-          <h1>loading...</h1>
-        )}
-      </div>
+      <ReadBtns sortByLow={sortByLow} setSortByLow={setSortByLow} />
+      <Categories />
+      <Products
+        sortByLow={sortByLow}
+        filteredCategory={filteredCategory}
+        products={products}
+        history={history}
+      />
     </div>
   );
 };

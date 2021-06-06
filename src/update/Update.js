@@ -13,6 +13,7 @@ export default function Update({ history }) {
   const [category, setCategory] = useState(oldCategory);
   const [loading, setLoading] = useState(false);
 
+
   return !loading ? (
     <div className="auth-body">
       <div className="auth-container">
@@ -101,7 +102,7 @@ export default function Update({ history }) {
           >
             <option value="vegetable">vegetable</option>
             <option value="fruit">fruit</option>
-            <option value="meat and dairy">meat/dairy</option>
+            <option value="meat">meat</option>
             <option value="other">other</option>
           </TextField>
           <Button variant="outlined" type="submit">

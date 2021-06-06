@@ -1,10 +1,13 @@
 .read {
-  padding: 5%;
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
-  grid-row-gap: 10px;
-  margin-bottom: 2%;
+  padding: 0 5% 10% 5%;
+}
+
+.card {
+  background-color: rgba(211, 211, 211, 0.1) !important;
+}
+
+.card-title {
+  text-align: center;
 }
 
 .card-icon {
@@ -15,7 +18,8 @@
 
 .card-emoji {
   text-align: center;
-  font-size: 3rem;
+  font-size: 3em;
+  border-radius: 15px;
 }
 
 .products {
@@ -25,15 +29,12 @@
   grid-row-gap: 1rem;
 }
 
-.add-and-filter .filter {
-  display: block;
-  margin-top: 1%;
+.add-btn {
   margin-bottom: 1%;
-  width: 50%;
 }
 
-.add-and-filter .add-btn {
-  margin-right: 2%;
+.add-and-sort {
+  margin-top: 1rem;
 }
 
 .grow {
