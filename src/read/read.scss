@@ -17,9 +17,18 @@
 }
 
 .card-emoji {
-  text-align: center;
+  height: 100%;
   font-size: 3rem;
   border-radius: 15px;
+  position: relative;
+}
+
+.card-emoji span {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .products {
@@ -30,7 +39,11 @@
 }
 
 .add-btn {
-  margin-bottom: 1%;
+  margin-top: 1rem;
+}
+
+.price-filter{
+  margin-bottom: 1rem;
 }
 
 .add-and-sort {
@@ -46,8 +59,12 @@
 
 .card-grid {
   display: grid;
-  grid-template-columns: auto auto;
-  justify-items: center;
+  grid-template-columns: 55% 45%;
+}
+
+ .card-info p{
+  font-size: larger;
+ 
 }
 
 @media only screen and (max-width: 758px) {

@@ -4,16 +4,18 @@ import { sortChecker } from "../config/otherfunctions";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 //import { categoryFilter } from "../config/otherfunctions";
+import ReadBtns from "../price-sorter/ReadBtns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "@material-ui/core";
 export default function Products({
   history,
   products,
   filteredCategory,
   sortByLow,
   category,
+  search,
+  setSortByLow
 }) {
   let card = (i) => {
     return (
@@ -24,14 +26,17 @@ export default function Products({
         variant="outlined"
       >
         <CardContent className="card-title">
-          <h1 className={`card-emoji ${i.category}`}>{i.icon}</h1>
+          <div className={`card-emoji ${i.category}`}>
+            <span>{i.icon}</span>
+          </div>
         </CardContent>
-        <div>
-          <h3>{i.name.toLowerCase()}</h3>
+        <div class='card-info'>
+          <p>{i.name.toLowerCase()}</p>
           <p> {i.category} </p>
           <p>
             ${i.price} per {i.unit}
           </p>
+     
           <FontAwesomeIcon
             className="card-icon"
             onClick={() => {
@@ -48,13 +53,14 @@ export default function Products({
             className="card-icon"
             icon={faEdit}
           />
+          
         </div>
       </Card>
     );
   };
 
   let showProducts = (category) => {
-    return products && !category
+    return !category
       ? sortChecker(filteredCategory, sortByLow).map((i) => card(i))
       : sortChecker(filteredCategory, sortByLow)
           .filter((i) => i.category === category)
@@ -64,18 +70,11 @@ export default function Products({
   return (
     <div>
       <h2>Items</h2>
-      <div className="add-btn">
-        <Button
-          onClick={() => {
-            history.push("/create");
-          }}
-          className="add-btn"
-          variant="outlined"
-          type="submit"
-        >
-          Add Product
-        </Button>
+
+      <div class='price-filter'>
+      <ReadBtns sortByLow={sortByLow} setSortByLow={setSortByLow} />
       </div>
+
       <div className="products">
         {products !== "" ? showProducts(category) : <h1>loading...</h1>}
       </div>

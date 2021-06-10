@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Categories from "../categories/Categories";
 import Products from "../products/Products";
-import ReadBtns from "../price-sorter/ReadBtns";
 import { grabProducts } from "../config/fireBaseFunctions";
 import { checkForLow } from "../config/otherfunctions";
 import { TextField } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 const Read = ({ history }) => {
   const [products, setProducts] = useState("");
@@ -12,7 +12,7 @@ const Read = ({ history }) => {
   const [sortByLow, setSortByLow] = useState("true");
   const [category, setCategory] = useState(false);
   const searchArray = [...products];
-console.log(category)
+  console.log(category);
   useEffect(() => {
     checkForLow(setSortByLow);
     grabProducts(setProducts);
@@ -41,8 +41,20 @@ console.log(category)
         type="text"
         value={search}
         onChange={(e) => setSearch(e.target.value.toLowerCase())}
+        onClick={() => setCategory("")}
       />
-      <ReadBtns sortByLow={sortByLow} setSortByLow={setSortByLow} />
+      <div className="add-btn">
+        <Button
+          onClick={() => {
+            history.push("/create");
+          }}
+          className="add-btn"
+          variant="outlined"
+          type="submit"
+        >
+          Add Product
+        </Button>
+      </div>
       <Categories category={category} setCategory={setCategory} />
       <Products
         sortByLow={sortByLow}
@@ -50,6 +62,8 @@ console.log(category)
         products={products}
         history={history}
         category={category}
+        search={search}
+        setSortByLow={setSortByLow}
       />
     </div>
   );
