@@ -1,13 +1,27 @@
 import React from "react";
 import { deleteProducts } from "../config/fireBaseFunctions";
 import { sortChecker } from "../config/otherfunctions";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-//import { categoryFilter } from "../config/otherfunctions";
 import ReadBtns from "../price-sorter/ReadBtns";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
+
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 140,
+  },
+});
+
 export default function Products({
   history,
   products,
@@ -15,66 +29,70 @@ export default function Products({
   sortByLow,
   category,
   search,
-  setSortByLow
+  setSortByLow,
 }) {
-  let card = (i) => {
+  const classes = useStyles();
+
+  let mediaCard = (i) => {
     return (
-      <Card
-        className="card grow card-grid"
-        id={i.id}
-        key={i.id}
-        variant="outlined"
-      >
-        <CardContent className="card-title">
-          <div className={`card-emoji ${i.category}`}>
-            <span>{i.icon}</span>
-          </div>
-        </CardContent>
-        <div class='card-info'>
-          <p>{i.name.toLowerCase()}</p>
-          <p> {i.category} </p>
-          <p>
-            ${i.price} per {i.unit}
-          </p>
-     
-          <FontAwesomeIcon
-            className="card-icon"
+      <Card id={i.id} key={i.id} className={classes.root}>
+        <CardActionArea>
+          <CardContent className='card-emoji'>
+          <span>{i.icon}</span>
+          </CardContent>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {i.name}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {i.category}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              ${i.price} per {i.unit}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions class={i.category}>
+          <Button
             onClick={() => {
               deleteProducts(i.id);
             }}
-            icon={faTrash}
-          />
-          <FontAwesomeIcon
+            size="small"
+            color="primary"
+          >
+            <FontAwesomeIcon className="card-icon" icon={faTrash} />
+          </Button>
+          <Button
             onClick={() => {
               history.push(
                 `/update/${i.id}/${i.name}/${i.price}/${i.unit}/${i.category}/${i.icon}`
               );
             }}
-            className="card-icon"
-            icon={faEdit}
-          />
-          
-        </div>
+            size="small"
+            color="primary"
+          >
+            <FontAwesomeIcon className="card-icon" icon={faEdit} />
+          </Button>
+        </CardActions>
       </Card>
     );
   };
 
   let showProducts = (category) => {
     return !category
-      ? sortChecker(filteredCategory, sortByLow).map((i) => card(i))
+      ? sortChecker(filteredCategory, sortByLow).map((i) => mediaCard(i))
       : sortChecker(filteredCategory, sortByLow)
           .filter((i) => i.category === category)
-          .map((i) => card(i));
+          .map((i) => mediaCard(i));
   };
 
   return (
     <div>
       <h2>Items</h2>
 
-      <div class='price-filter'>
-      <ReadBtns sortByLow={sortByLow} setSortByLow={setSortByLow} />
+      <div className="price-filter">
+        <ReadBtns sortByLow={sortByLow} setSortByLow={setSortByLow} />
       </div>
-
       <div className="products">
         {products !== "" ? showProducts(category) : <h1>loading...</h1>}
       </div>

@@ -5,6 +5,7 @@ import { grabProducts } from "../config/fireBaseFunctions";
 import { checkForLow } from "../config/otherfunctions";
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
+import firebase from "../config/firebase";
 
 const Read = ({ history }) => {
   const [products, setProducts] = useState("");
@@ -12,7 +13,7 @@ const Read = ({ history }) => {
   const [sortByLow, setSortByLow] = useState("true");
   const [category, setCategory] = useState(false);
   const searchArray = [...products];
-  console.log(category);
+ 
   useEffect(() => {
     checkForLow(setSortByLow);
     grabProducts(setProducts);
@@ -25,11 +26,11 @@ const Read = ({ history }) => {
   let filteredCategory = searchArray.filter((i) => {
     return i.name.indexOf(search) !== -1;
   });
-
+ console.log(firebase.auth().currentUser)
   return (
     <div className="read">
       <div className="read-header">
-        <h2>Hello!</h2>
+        <h2>Hello {firebase.auth().currentUser ? firebase.auth().currentUser.email : <span></span>}!</h2>
         <p>What would you like to do today?</p>
       </div>
       <TextField

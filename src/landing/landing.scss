@@ -1,31 +1,25 @@
-.landing-main {
-  padding: 0 5% 5% 5%;
-  animation: fadeIn ease 3s;
-  -webkit-animation: fadeIn ease 3s;
-}
-
-.btn-group {
-  display: grid;
-  grid-template-rows: auto auto;
-  grid-row-gap: 25%;
+.landing-title {
+  text-align: center;
+  h1 {
+    font-size: 5rem;
+    margin-bottom: 0;
+  }
 }
 
 
-@media only screen and (min-width: 758px) {
-    .ladngin-main{
-        padding: 0 5% 0 0;
-    }
-  .landing-title{
-      width: 30%;
-  }
-  .btn-group {
-    display: grid;
-    width: 30%;
-  }
-  #landing-img {
-    width: 15%;
-  }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .fade-in {
   animation: fadeIn ease 3s;

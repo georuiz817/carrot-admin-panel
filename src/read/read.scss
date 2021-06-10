@@ -12,23 +12,22 @@
 
 .card-icon {
   cursor: pointer;
-  margin-right: 1rem;
-  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: black;
+}
+
+.card-food-icon{
+  font-size: 3rem;
 }
 
 .card-emoji {
   height: 100%;
   font-size: 3rem;
-  border-radius: 15px;
-  position: relative;
+ 
 }
 
 .card-emoji span {
   margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .products {
@@ -42,7 +41,7 @@
   margin-top: 1rem;
 }
 
-.price-filter{
+.price-filter {
   margin-bottom: 1rem;
 }
 
@@ -62,9 +61,8 @@
   grid-template-columns: 55% 45%;
 }
 
- .card-info p{
+.card-info p {
   font-size: larger;
- 
 }
 
 @media only screen and (max-width: 758px) {
