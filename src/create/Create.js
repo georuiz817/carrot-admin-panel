@@ -41,7 +41,7 @@ export default function Create({ history }) {
             value={icon}
             onChange={(e) => setIcon(e.target.value)}
             name="icon"
-            helperText={<a rel="noreferrer"  target="_blank" href='https://emojipedia.org/'>emojipedia.org</a>}
+            type='file'
           />
           <TextField
             className="signup-field"
