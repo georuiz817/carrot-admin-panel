@@ -13,7 +13,7 @@ const Read = ({ history }) => {
   const [sortByLow, setSortByLow] = useState("true");
   const [category, setCategory] = useState(false);
   const searchArray = [...products];
- 
+
   useEffect(() => {
     checkForLow(setSortByLow);
     grabProducts(setProducts);
@@ -26,11 +26,19 @@ const Read = ({ history }) => {
   let filteredCategory = searchArray.filter((i) => {
     return i.name.indexOf(search) !== -1;
   });
- console.log(firebase.auth().currentUser)
+  console.log(firebase.auth().currentUser);
   return (
     <div className="read">
       <div className="read-header">
-        <h2>Hello {firebase.auth().currentUser ? firebase.auth().currentUser.email : <span></span>}!</h2>
+        <h2>
+          Hello{" "}
+          {firebase.auth().currentUser ? (
+            firebase.auth().currentUser.displayName
+          ) : (
+            <span></span>
+          )}
+          !
+        </h2>
         <p>What would you like to do today?</p>
       </div>
       <TextField

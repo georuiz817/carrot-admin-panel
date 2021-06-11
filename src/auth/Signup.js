@@ -9,6 +9,7 @@ const SignUp = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setErrors] = useState("");
+  const [displayName, setdisplayName] = useState("");
   const Auth = useContext(AuthContext);
 
   return (
@@ -24,10 +25,22 @@ const SignUp = ({ history }) => {
             Auth,
             setErrors,
             error,
-            history
+            history,
+            displayName
           )
         }
       >
+                <TextField
+          className="signup-field"
+          id="outlined-basic"
+          label="Name"
+          variant="outlined"
+          required
+          value={displayName}
+          onChange={(e) => setdisplayName(e.target.value)}
+          name="displayName"
+          placeholder="Name"
+        />
         <TextField
           className="signup-field"
           id="outlined-basic"

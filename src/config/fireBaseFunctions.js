@@ -137,7 +137,8 @@ export const signUpWithFireBase = (
   Auth,
   setErrors,
   error,
-  history
+  history,
+  displayName
 ) => {
   e.preventDefault();
   firebase
@@ -147,6 +148,7 @@ export const signUpWithFireBase = (
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
+        .then((res) => {res.user.updateProfile({displayName: displayName})})
         .then((res) => {
           console.log(res);
           history.push("/read");
