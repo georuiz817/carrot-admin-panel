@@ -2,28 +2,15 @@
   padding: 0 5% 10% 5%;
 }
 
-.card {
-  background-color: rgba(211, 211, 211, 0.1) !important;
-}
-
-.card-title {
-  text-align: center;
-}
-
 .card-icon {
   cursor: pointer;
   font-size: 1rem;
   color: black;
 }
 
-.card-food-icon{
-  font-size: 3rem;
-}
-
 .card-emoji {
   height: 100%;
   font-size: 3rem;
- 
 }
 
 .card-emoji span {
@@ -47,22 +34,6 @@
 
 .add-and-sort {
   margin-top: 1rem;
-}
-
-.grow {
-  transition: all 0.2s ease-in-out;
-}
-.grow:hover {
-  transform: scale(1.1);
-}
-
-.card-grid {
-  display: grid;
-  grid-template-columns: 55% 45%;
-}
-
-.card-info p {
-  font-size: larger;
 }
 
 @media only screen and (max-width: 758px) {

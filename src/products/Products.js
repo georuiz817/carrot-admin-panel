@@ -38,7 +38,7 @@ export default function Products({
       <Card id={i.id} key={i.id} className={classes.root}>
         <CardActionArea>
           <CardContent className='card-emoji'>
-          <span>{i.icon}</span>
+          {i.icon}
           </CardContent>
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">

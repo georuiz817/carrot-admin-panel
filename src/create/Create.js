@@ -41,7 +41,6 @@ export default function Create({ history }) {
             value={icon}
             onChange={(e) => setIcon(e.target.value)}
             name="icon"
-            type='file'
           />
           <TextField
             className="signup-field"
