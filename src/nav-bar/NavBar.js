@@ -29,6 +29,7 @@ export default function NavBar({ history, logger }) {
             </Box>
             <Box component="span" m={1}>
               <Button
+ 
                 variant="outlined"
                 onClick={() => history.push("/signup")}
               >

@@ -1,39 +1,26 @@
 .auth-body {
+  text-align: center;
+  padding: 5%;
  
-  margin-bottom: 10%;
-  height: 100%;
-
-
- .auth-container{
-   height: 100%;
- }
- 
-  h1 {
-    text-align: center;
-  }
-
-  .auth-form {
-    justify-content: center;
-    text-align: center;
-    display: grid;
-    grid-row-gap: 10%;
-    height: 100%;
-  }
-
-  .error {
-    margin-top: 20%;
-    padding-left: 5%;
-    padding-right: 5%;
-    text-align: center;
-  }
 }
 
-@media only screen and (min-width: 850px) {
- 
-  .error {
-    justify-content: center;
-    text-align: center;
+.auth-form {
+  display: grid;
+  grid-template-columns: auto;
+  grid-row-gap: 1rem;
+}
+
+.error {
+  color: red;
+}
+
+@media (min-width: 768px) {
+  .auth-body{
     display: grid;
-    margin-top: 5%;
+ 
+  }
+  .auth-form {
+    width: 25%;
+    justify-self: center;
   }
 }

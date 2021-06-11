@@ -9,6 +9,7 @@ const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setErrors] = useState("");
+
   const Auth = useContext(AuthContext);
 
   return (
@@ -42,6 +43,7 @@ const Login = ({ history }) => {
           value={password}
           type="password"
           placeholder="password"
+ 
         />
         <Button variant="outlined" type="submit">
           Login

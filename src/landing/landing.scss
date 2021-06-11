@@ -3,6 +3,7 @@
   background-size: auto;
   height: calc(100vh - 75.813px);
   animation: fadeIn linear 2s;
+  position: relative;
   -webkit-animation: fadeIn linear 2s;
   -moz-animation: fadeIn linear 2s;
   -o-animation: fadeIn linear 2s;
@@ -10,11 +11,17 @@
 }
 
 .landing-desc {
-  color: white;
+  color: black;
   padding: 1%;
+  margin: 1%;
   font-size: 11px;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 15px;
+  position: absolute;
+  top: 50%;
+
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 @media (min-width: 768px) {
@@ -26,8 +33,10 @@
   .landing-desc {
     position: absolute;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.8);
     margin-bottom: 1%;
+    -ms-transform: translateY(0);
+    transform: translateY(0);
   }
 }
 
