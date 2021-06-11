@@ -1,43 +1,32 @@
 .landing-main {
-  padding: 0 5% 5% 5%;
-  animation: fadeIn ease 3s;
-  -webkit-animation: fadeIn ease 3s;
+  background-image: url("../ramen.jpg");
+  background-size: auto;
+  height: calc(100vh - 75.813px);
 }
 
-.btn-group {
-  display: grid;
-  grid-template-rows: auto auto;
-  grid-row-gap: 25%;
+.landing-desc {
+  color: white;
+  padding: 1%;
+
+  background-color: #000;
+  background: rgba(0, 0, 0, 0.25);
+
+  border-radius: 15px;
 }
 
-
-
-@media only screen and (min-width: 758px) {
-  .ladngin-main{
-      padding: 0 5% 0 0;
+@media (min-width: 768px) {
+  .landing-main {
+    position: relative;
+    height: calc(100vh - 75.813px);
+    background-size: cover;
   }
-.landing-title{
-    width: 30%;
+  .landing-desc {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    margin-bottom: 1%;
+  }
 }
-.btn-group {
-  display: grid;
-  width: 30%;
-}
-#landing-img {
-  width: 15%;
-}
-}
-
-
-
-
-
-
-
-
-
-
-
 
 .fade-in {
   animation: fadeIn ease 3s;

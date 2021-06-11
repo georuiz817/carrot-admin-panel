@@ -23,7 +23,7 @@ function App() {
   );
 
   return (
-    <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
+    <AuthContext.Provider   value={{ loggedIn, setLoggedIn }}>
       <NavBar logger={logger} history={history} />
       <Switch>
         <Route exact path="/">

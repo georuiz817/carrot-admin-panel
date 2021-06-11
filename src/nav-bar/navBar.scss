@@ -1,21 +1,23 @@
-.nav{
-    display: flex;
-    justify-content: space-between;
+.nav {
+  display: flex;
+  justify-content: space-between;
+ 
 }
 
-.heading{
-margin-left: 5%;
-cursor: pointer;
+.heading {
+  margin-left: 5%;
+  cursor: pointer;
 }
 
+ 
 
-.nav-btn{
-margin-right: 5%;
-margin-top: 2%;
+.nav-btn {
+  margin-right: 5%;
+  margin-top: 2%;
 }
 
 @media only screen and (max-width: 600px) {
-    .nav-btn {
-margin-top: 5%;
-    }
+  .nav-btn {
+    margin-top: 5%;
   }
+}
