@@ -37,9 +37,7 @@ export default function Products({
     return (
       <Card id={i.id} key={i.id} className={classes.root}>
         <CardActionArea>
-          <CardContent className='card-emoji'>
-          {i.icon}
-          </CardContent>
+          <CardContent className="card-emoji">{i.icon}</CardContent>
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               {i.name}
@@ -65,7 +63,7 @@ export default function Products({
           <Button
             onClick={() => {
               history.push(
-                `/update/${i.id}/${i.name}/${i.price}/${i.unit}/${i.category}/${i.icon}`
+                `/update/${i.id}/${i.name}/${i.price}/${i.unit}/${i.category}/${i.icon}/${i.creator}`
               );
             }}
             size="small"
@@ -86,6 +84,14 @@ export default function Products({
           .map((i) => mediaCard(i));
   };
 
+  let checkIfProductsAvaiable = (products, category) => {
+    return products.length > 0 ? (
+      showProducts(category)
+    ) : (
+      <h2>You currently have no products</h2>
+    );
+  };
+
   return (
     <div>
       <h2>Items</h2>
@@ -94,7 +100,11 @@ export default function Products({
         <ReadBtns sortByLow={sortByLow} setSortByLow={setSortByLow} />
       </div>
       <div className="products">
-        {products !== "" ? showProducts(category) : <h1>loading...</h1>}
+        {products !== "" ? (
+          checkIfProductsAvaiable(products, category)
+        ) : (
+          <h1>loading...</h1>
+        )}
       </div>
     </div>
   );

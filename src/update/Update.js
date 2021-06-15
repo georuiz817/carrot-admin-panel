@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { updateProduct } from "../config/fireBaseFunctions";
 import { useParams } from "react-router-dom";
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 
 export default function Update({ history }) {
-  let { id, oldName, oldPrice, oldUnit, oldCategory, oldIcon } = useParams();
+  let { id, oldName, oldPrice, oldUnit, oldCategory, oldIcon, oldCreator } = useParams();
   const [icon, setIcon] = useState(oldIcon);
   const [name, setName] = useState(oldName);
   const [price, setPrice] = useState(oldPrice);
@@ -28,6 +28,7 @@ export default function Update({ history }) {
             price,
             unit,
             category,
+            oldCreator,
             history
           )
         }

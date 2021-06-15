@@ -38,7 +38,7 @@ function App() {
         </Route>
         <Route
           exact
-          path="/update/:id/:oldName/:oldPrice/:oldUnit/:oldCategory/:oldIcon"
+          path="/update/:id/:oldName/:oldPrice/:oldUnit/:oldCategory/:oldIcon/:oldCreator"
         >
           {logger ? <Update history={history} /> : <Redirect to="/login" />}
         </Route>

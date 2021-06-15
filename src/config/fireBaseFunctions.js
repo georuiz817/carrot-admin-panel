@@ -8,11 +8,13 @@ export const addProduct = (
   price,
   unit,
   category,
+  creator,
   history,
   setName,
   setPrice,
   setUnit,
-  setCategory
+  setCategory,
+  setCreator
 ) => {
   e.preventDefault();
   firebase
@@ -24,15 +26,14 @@ export const addProduct = (
       price,
       unit,
       category,
-    })
-    .then(function (docRef) {
-      console.log("Document written with ID: ", docRef.id);
+      creator,
     })
     .then(
       setName(""),
       setPrice(""),
       setUnit(""),
       setCategory("Vegetable"),
+      setCreator(""),
       history.push("/read")
     )
     .catch(function (error) {
@@ -41,38 +42,45 @@ export const addProduct = (
 };
 
 //UPDATE PRODUCT
-export const updateProduct = async (
-  e,
-  setLoading,
-  id,
-  icon,
-  name,
-  price,
-  unit,
-  category,
-  history
-) => {
-  e.preventDefault();
-  setLoading(true);
-  try {
-    await firebase.firestore().collection("products").doc(`${id}`).update(
-      {
-        icon,
-        name,
-        price,
-        unit,
-        category,
-      },
-      setLoading(false)
-    );
-  } finally {
+export const updateProduct =
+  () =>
+  (
+    e,
+    setLoading,
+    id,
+    icon,
+    name,
+    price,
+    unit,
+    category,
+    oldCreator,
+    history
+  ) => {
+    e.preventDefault();
+    setLoading(true);
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user.uid !== oldCreator) {
+        let error = "you cant edit this product";
+        return error;
+      } else {
+        firebase.firestore().collection("products").doc(`${id}`).update(
+          {
+            icon,
+            name,
+            price,
+            unit,
+            category,
+          },
+          setLoading(false)
+        );
+      }
+    });
     history.push("/read");
-  }
-};
+  };
 
 //DELETE PRODUCT
-export const deleteProducts = async (id) => {
-  await firebase
+export const deleteProducts = (id) => {
+  firebase
     .firestore()
     .collection("/products")
     .doc(`${id}`)
@@ -87,16 +95,19 @@ export const deleteProducts = async (id) => {
 
 //GRABS PRODUCTS
 export const grabProducts = async (setProducts) => {
-  await firebase
-    .firestore()
-    .collection("/products")
-    .get()
-    .then((querySnapshot) => {
-      const prodcutsWithID = querySnapshot.docs.map((doc) => {
-        return { id: doc.id, ...doc.data() };
+  if (firebase.auth().currentUser) {
+    await firebase
+      .firestore()
+      .collection("/products")
+      .where("creator", "==", firebase.auth().currentUser.uid)
+      .get()
+      .then((querySnapshot) => {
+        const prodcutsWithID = querySnapshot.docs.map((doc) => {
+          return { id: doc.id, ...doc.data() };
+        });
+        setProducts(prodcutsWithID);
       });
-      setProducts(prodcutsWithID);
-    });
+  }
 };
 
 //LOGIN
@@ -148,7 +159,9 @@ export const signUpWithFireBase = (
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .then((res) => {res.user.updateProfile({displayName: displayName})})
+        .then((res) => {
+          res.user.updateProfile({ displayName: displayName });
+        })
         .then((res) => {
           console.log(res);
           history.push("/read");

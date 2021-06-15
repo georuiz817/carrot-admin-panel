@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { addProduct } from "../config/fireBaseFunctions";
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
-
+import firebase from "../config/firebase";
 export default function Create({ history }) {
   const [icon, setIcon] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [unit, setUnit] = useState("item");
+  const [creator, setCreator] = useState("");
   const [category, setCategory] = useState("vegetable");
 
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setCreator(firebase.auth().currentUser.uid);
+      }
+    });
+  }, []);
+  console.log(creator);
   return (
     <div className="auth-body">
       <h1>Add Product</h1>
@@ -23,11 +32,13 @@ export default function Create({ history }) {
             price,
             unit,
             category,
+            creator,
             history,
             setName,
             setPrice,
             setUnit,
-            setCategory
+            setCategory,
+            setCreator
           )
         }
       >

@@ -16,7 +16,11 @@ const Read = ({ history }) => {
 
   useEffect(() => {
     checkForLow(setSortByLow);
-    grabProducts(setProducts);
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        grabProducts(setProducts);
+      }
+    });
   }, []);
 
   useEffect(() => {
