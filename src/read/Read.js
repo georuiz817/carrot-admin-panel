@@ -4,6 +4,7 @@ import Products from "../products/Products";
 import { grabProducts } from "../config/fireBaseFunctions";
 import { checkForLow } from "../config/otherfunctions";
 import { TextField } from "@material-ui/core";
+import { filterInput } from "../config/otherfunctions";
 import { Button } from "@material-ui/core";
 import firebase from "../config/firebase";
 
@@ -27,10 +28,6 @@ const Read = ({ history }) => {
     localStorage.setItem("LocalLow", JSON.stringify(sortByLow));
   });
 
-  let filteredCategory = searchArray.filter((i) => {
-    return i.name.indexOf(search) !== -1;
-  });
-  console.log(firebase.auth().currentUser);
   return (
     <div className="read">
       <div className="read-header">
@@ -71,12 +68,13 @@ const Read = ({ history }) => {
       <Categories category={category} setCategory={setCategory} />
       <Products
         sortByLow={sortByLow}
-        filteredCategory={filteredCategory}
+        filterInput={filterInput}
         products={products}
         history={history}
         category={category}
         search={search}
         setSortByLow={setSortByLow}
+        searchArray={searchArray}
       />
     </div>
   );

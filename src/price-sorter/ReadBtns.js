@@ -6,7 +6,7 @@ export default function ReadBtns({ sortByLow, setSortByLow }) {
     <div className="add-and-sort">
       <div>
         <TextField
-          size="small"
+          size="small"z
           className="filter"
           id="outlined-select-currency-native"
           select

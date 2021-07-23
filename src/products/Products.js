@@ -25,9 +25,10 @@ const useStyles = makeStyles({
 export default function Products({
   history,
   products,
-  filteredCategory,
   sortByLow,
   category,
+  filterInput,
+  searchArray,
   search,
   setSortByLow,
 }) {
@@ -78,8 +79,10 @@ export default function Products({
 
   let showProducts = (category) => {
     return !category
-      ? sortChecker(filteredCategory, sortByLow).map((i) => mediaCard(i))
-      : sortChecker(filteredCategory, sortByLow)
+      ? sortChecker(filterInput(searchArray, search), sortByLow).map((i) =>
+          mediaCard(i)
+        )
+      : sortChecker(filterInput(searchArray, search), sortByLow)
           .filter((i) => i.category === category)
           .map((i) => mediaCard(i));
   };
