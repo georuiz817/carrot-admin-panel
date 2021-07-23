@@ -1,6 +1,6 @@
 import React from "react";
 import { deleteProducts } from "../config/fireBaseFunctions";
-import { sortChecker } from "../config/otherfunctions";
+import { checkIfAvaiable } from "../config/otherfunctions";
 import ReadBtns from "../price-sorter/ReadBtns";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -27,7 +27,6 @@ export default function Products({
   products,
   sortByLow,
   category,
-  filterInput,
   searchArray,
   search,
   setSortByLow,
@@ -77,24 +76,6 @@ export default function Products({
     );
   };
 
-  let showProducts = (category) => {
-    return !category
-      ? sortChecker(filterInput(searchArray, search), sortByLow).map((i) =>
-          mediaCard(i)
-        )
-      : sortChecker(filterInput(searchArray, search), sortByLow)
-          .filter((i) => i.category === category)
-          .map((i) => mediaCard(i));
-  };
-
-  let checkIfProductsAvaiable = (products, category) => {
-    return products.length > 0 ? (
-      showProducts(category)
-    ) : (
-      <h2>You currently have no products</h2>
-    );
-  };
-
   return (
     <div>
       <h2>Items</h2>
@@ -104,7 +85,14 @@ export default function Products({
       </div>
       <div className="products">
         {products !== "" ? (
-          checkIfProductsAvaiable(products, category)
+          checkIfAvaiable(
+            products,
+            category,
+            searchArray,
+            search,
+            sortByLow,
+            mediaCard
+          )
         ) : (
           <h1>loading...</h1>
         )}
