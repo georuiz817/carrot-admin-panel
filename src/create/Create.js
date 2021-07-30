@@ -18,7 +18,7 @@ export default function Create({ history }) {
       }
     });
   }, []);
-  console.log(creator);
+
   return (
     <div className="auth-body">
       <h1>Add Product</h1>

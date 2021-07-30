@@ -20,7 +20,7 @@ export const sortChecker = (arr, sortByLow) => {
 const strFilter = (arr, str) => arr.filter((i) => i.str === str);
 
 export const categoryFilter = (x) => {
-if (x) strFilter(sortChecker, x);
+  if (x) strFilter(sortChecker, x);
 };
 
 export const filterInput = (arr, x) =>
@@ -51,12 +51,12 @@ const showProducts = (category, searchArray, search, sortByLow, mediaCard) => {
   return !category
     ? showAllProducts(searchArray, search, sortByLow, mediaCard)
     : showProductByCategory(
-        category,
-        searchArray,
-        search,
-        sortByLow,
-        mediaCard
-      );
+      category,
+      searchArray,
+      search,
+      sortByLow,
+      mediaCard
+    );
 };
 //
 
